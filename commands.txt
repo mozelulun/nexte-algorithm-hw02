@@ -1,0 +1,56 @@
+# Git 配置
+git config --global user.name "任一航"
+git config --global user.email "3153909125@qq.com"
+
+# 克隆仓库
+git clone https://github.com/mozelulun/nexte-algorithm-hw02.git
+cd nexte-algorithm-hw02
+
+# 创建项目结构
+mkdir -p src tests
+vim .gitignore        # 输入 /build/
+vim CMakeLists.txt    # 添加三个目标
+
+# 初始化提交
+git add .
+git commit -m "Initialize C++ project structure"
+git push -u origin main
+
+# 创建并切换到功能分支
+git switch -c feature/algorithms
+
+# 编写第一题（最长连续命中）
+vim src/streak.cpp
+vim tests/streak_sample.in
+cmake -S . -B build
+cmake --build build
+./build/streak < tests/streak_sample.in   # 输出 3
+git add .
+git commit -m "Implement streak algorithm and add test data"
+
+# 编写第二题（目标编号整理）
+vim src/unique_ids.cpp
+vim tests/unique_ids_sample.in
+cmake --build build
+./build/unique_ids < tests/unique_ids_sample.in   # 输出 5 和 1 2 3 4 5
+git add .
+git commit -m "Implement unique_ids algorithm and add test data"
+
+# 编写第三题（区间数据求和）
+vim src/range_sum.cpp
+vim tests/range_sum_sample.in
+cmake --build build
+./build/range_sum < tests/range_sum_sample.in     # 输出 4 5 5
+git add .
+git commit -m "Implement range_sum algorithm and add test data"
+
+# 清理 build 目录的 Git 跟踪
+git rm -r --cached build/
+git commit -m "Remove build artifacts from tracking"
+
+# 合并回主分支
+git switch main
+git merge feature/algorithms
+
+# 推送
+git push
