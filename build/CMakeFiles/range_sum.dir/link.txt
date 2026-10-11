@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/range_sum.dir/link.d CMakeFiles/range_sum.dir/src/range_sum.cpp.o -o range_sum

@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/streak.dir/link.d CMakeFiles/streak.dir/src/streak.cpp.o -o streak
